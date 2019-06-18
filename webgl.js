@@ -93,7 +93,7 @@ const sketch = ({ context }) => {
     // Update & render your scene here
     render({ time, playhead }) {
       const t = Math.sin(playhead * Math.PI * 2);
-      scene.rotation.z = eases.quadInOut(t);
+      scene.rotation.z = easeFN(t);
       renderer.render(scene, camera);
     },
     // Dispose of events & renderer for cleaner hot-reloading
