@@ -11,3 +11,4 @@ This is a workshop of Learning Advance graphic with Canvas and ThreeJS which was
 
 - cubic-bezier.com
 - https://easings.net/en
+- https://github.com/mattdesl/workshop-generative-art

@@ -13,10 +13,22 @@ const frag = glsl(`
   precision highp float;
 
   uniform float time;
+   uniform float aspect;
   varying vec2 vUv;
 
   void main () {
-    gl_FragColor = vec4(vec3(vUv.x),1.0);
+    vec3 colorA = time + vec3(1.0, 0.0, 0.0);
+    vec3 colorB = vec3(0.0, 0.5, 0.0);
+
+
+    vec2 center = vUv - 0.5;
+    center.x *= aspect;
+
+    float dist = length(center);
+    float alpha = smoothstep(0.251,0.25, dist);
+    vec3 color = mix(colorA, colorB, vUv.x);
+
+    gl_FragColor = vec4(color,alpha);
   }
 `);
 
@@ -32,6 +44,7 @@ const sketch = ({ gl }) => {
     uniforms: {
       // Expose props from canvas-sketch
       time: ({ time }) => time,
+      aspect: ({ width, height }) => width / height,
     },
   });
 };
